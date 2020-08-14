@@ -1,0 +1,20 @@
+#! /usr/bin/env python3
+
+import json
+import os
+import requests
+
+directory = "/home/student-04-2b982d7c423a/supplier-data/descriptions/"
+
+for file in os.listdir(directory):
+  f = open(directory+file,"r")
+  d = dict()
+  d["name"] = (f.readline().strip())
+  fo = (f.readline().split())
+  d["weight"] = int(fo[0])
+  d["description"] = (f.readline().strip())
+  file = file.replace(".txt", "jpeg")
+  d["image_name"] =  file
+  f.close()
+  response = requests.post("http://35.194.36.142/fruits", json=d)
+  print(response.status_code)

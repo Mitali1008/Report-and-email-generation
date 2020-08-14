@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+
+import os, sys
+from PIL import Image
+
+directory = "/home/student-04-97ce1c586d41/supplier-data/images/"
+
+for files in os.listdir(directory):
+  if ".tiff" in files:
+    im = Image.open(directory+files)
+    filename = files.replace(".tiff",".jpeg")
+    new_im = im.resize((600,400))
+    new_im = new_im.convert("RGB")
+    os.remove(directory+files)
+    new_im.save("/home/student-00-447dd5ef7428/supplier-data/images/"+filename,"JPEG")
+
+print("Done!")
+
+
